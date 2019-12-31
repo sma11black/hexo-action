@@ -1,0 +1,24 @@
+name: 'Hexo Action'
+author: 'smallblack'
+description: 'Hexo CI action for deployment.'
+inputs:
+  user_name:
+    description: 'Github User Name'
+    required: true
+    default: 'username'
+  user_email:
+    description: 'Github User Email'
+    required: true
+    default: 'username@example.com'
+outputs:
+  notify: # id of output
+    description: 'The notification of deployment result'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.user_name }}
+    - ${{ inputs.user_email }}
+branding:
+  icon: 'hexagon'  
+  color: 'blue'
