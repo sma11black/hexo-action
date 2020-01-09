@@ -2,13 +2,17 @@ name: 'Hexo Action'
 author: 'smallblack'
 description: 'Hexo CI action for deployment.'
 inputs:
+  cmd:
+    description: 'Hexo command'
+    required: true
+    default: 'version'
   user_name:
     description: 'Github User Name'
-    required: true
+    required: false
     default: 'username'
   user_email:
     description: 'Github User Email'
-    required: true
+    required: false
     default: 'username@example.com'
 outputs:
   notify: # id of output
