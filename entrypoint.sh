@@ -5,7 +5,7 @@ set -e
 git config --global user.name "$INPUT_USER_NAME"
 git config --global user.email "$INPUT_USER_EMAIL"
 
-ls
+echo $GITHUB_WORKSPACE
 
 npm install
 
