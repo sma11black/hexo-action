@@ -5,6 +5,8 @@ set -e
 git config --global user.name "$INPUT_USER_NAME"
 git config --global user.email "$INPUT_USER_EMAIL"
 
+ls
+
 npm install
 
 sh -c "hexo $INPUT_CMD"
