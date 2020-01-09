@@ -5,7 +5,7 @@ inputs:
   cmd:
     description: 'Hexo command'
     required: true
-    default: 'version'
+    default: 'help'
   user_name:
     description: 'Github User Name'
     required: false
@@ -21,6 +21,7 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
+    - ${{ inputs.cmd }}
     - ${{ inputs.user_name }}
     - ${{ inputs.user_email }}
 branding:
