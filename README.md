@@ -10,11 +10,11 @@ This action automating hexo deployment workflow.
 
 ### `user_name`
 
-**Required for deploy** User name of your github account. Default `"username"`.
+**Required for deploy** User name of your github account.
 
 ### `user_email`
 
-**Required for deploy** User email of your github account. Default `"username@example.com"`.
+**Required for deploy** User email of your github account.
 
 ## Outputs
 

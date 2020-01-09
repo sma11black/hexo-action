@@ -9,11 +9,9 @@ inputs:
   user_name:
     description: 'Github User Name'
     required: false
-    default: 'username'
   user_email:
     description: 'Github User Email'
     required: false
-    default: 'username@example.com'
 outputs:
   notify: # id of output
     description: 'The notification of deployment result'
