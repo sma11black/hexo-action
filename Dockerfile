@@ -10,6 +10,8 @@ RUN apt-get update && \
 
 RUN npm install -g hexo hexo-deployer-git
 
+RUN npm install
+
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
