@@ -1,17 +1,22 @@
 name: 'Hexo Action'
 author: 'smallblack'
 description: 'Hexo CI action for deployment.'
+branding:
+  icon: 'hexagon'  
+  color: 'blue'
 inputs:
-  cmd:
-    description: 'Hexo command'
-    required: true
-    default: 'help'
   user_name:
-    description: 'Github User Name'
-    required: false
+    description: 'Github user name'
+    required: true
+    default: ''
   user_email:
-    description: 'Github User Email'
-    required: false
+    description: 'Github email'
+    required: true
+    default: ''
+  deploy_key:
+    description: 'The deploy key for Github Pages repo'
+    required: true
+    default: ''
 outputs:
   notify: # id of output
     description: 'The notification of deployment result'
@@ -19,9 +24,6 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.cmd }}
     - ${{ inputs.user_name }}
     - ${{ inputs.user_email }}
-branding:
-  icon: 'hexagon'  
-  color: 'blue'
+    - ${{ inputs.deploy_key }}
