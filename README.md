@@ -1,28 +1,39 @@
-# Hexo CI/CD action
+# GitHub Action - Hexo CI/CD
+This Github Action automating hexo deployment workflow, to allow you to leverage GitHub Actions to publish your hexo site on Github Pages.
 
-This action automating hexo deployment workflow.
+<a href="https://github.com/marketplace/actions/hexo-action"><img alt="View Action" src="https://img.shields.io/badge/action-marketplace-blue.svg?logo=github&color=orange"></a>
 
-## Inputs
+## Usage
+### Pre-requisites
 
-### `cmd`
+#### Step 1: Setup `Deploy key` and `Secret`
+The `with` portion of the workflow **must** be configured before the action will work. You can add these in the `with` section found in the [example workflow](#example-workflow---hexo-deploy) below. Any `secrets` must be referenced using the bracket syntax and stored in the GitHub repositories `Settings/Secrets` menu. You can learn more about setting environment variables with GitHub actions [here](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstepsenv).
 
-**Required** Hexo command. Default `"help"`. Options: `"clean"`, `"generate"`, `"deploy"`, etc.
+**How to add your ssh key pair?**
+1. Run the following terminal command, replacing the email with one connected to your GitHub account.
+```sh
+ssh-keygen -t rsa -C "username@example.com"
+```
+2. In *Github Pages* repo: Add the contents of the public key within your repositories deploy keys menu. You can find this option by going to `Settings > Deploy Keys`, you can name the public key whatever you want, but you **do** need to give it write access.
+3. In *hexo source code* repo: Add the contents of the private key to the `Settings > Secrets` menu as DEPLOY_KEY.
 
-### `user_name`
+#### Step 2: Configure github workflows
+Create a workflow `.yml` file in your `.github/workflows` directory. An [example workflow](#example-workflow---hexo-deploy) is available below. For more information, reference the  GitHub Help Documentation for [Creating a workflow file](https://help.github.com/en/articles/configuring-a-workflow#creating-a-workflow-file).
 
-**Optional** User name of your github account for deploying.
+### Inputs
+For more information on these inputs, see the [API Documentation](https://developer.github.com/v3/repos/releases/#input)
 
-### `user_email`
+- `user_name`: **Required** The user name of your github account for deploying.
+- `user_email`: **Required** The user email of your github account for deploying.
+- `deploy_key`: **Required** The deploy key to access your GitHub Pages repository.
 
-**Optional** User email of your github account for deploying.
+### Outputs
+For more information on these outputs, see the [API Documentation](https://developer.github.com/v3/repos/releases/#response-4) for an example of what these outputs look like
 
-## Outputs
+- `notify`: Deploy complate notification.
 
-### `notify`
-
-The notification of deployment result.
-
-## Example usage
+### Example workflow - hexo deploy
+On every `push` to this repo, generate hexo sites and publish on `yourusername.github.io` repo.
 
 ```yaml
 name: Deploy
@@ -32,29 +43,67 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: A job to deploy blog
+    name: A job to deploy blog.
     steps:
-    - name: Clean
-      id: clean
-      uses: sma11black/hexo-action@master
+    - name: Checkout
+      uses: actions/checkout@v1
       with:
-        cmd: clean
-    - name: Generate
-      id: generate
-      uses: sma11black/hexo-action@master
+        submodules: true # Checkout private submodules(themes or something else).
+    
+    # Caching dependencies to speed up workflows. (GitHub will remove any cache entries that have not been accessed in over 7 days.)
+    - name: Cache node modules
+      uses: actions/cache@v1
+      id: cache
       with:
-        cmd: generate
+        path: node_modules
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    - name: Install Dependencies
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: npm install
+    
+    # Deploy hexo blog website.
     - name: Deploy
       id: deploy
-      uses: sma11black/hexo-action@master
+      uses: sma11black/hexo-action@v1
       with:
-        cmd: deploy
-        user_name: sma11black
-        user_email: sma11black@example.com
-    # Use the output from the `clean`, `generate` and `deploy` step
+        deploy_key: ${{ secrets.DEPLOY_KEY }}
+        user_name: your github username
+        user_email: your github useremail
+    # Use the output from the `deploy` step(use for test action)
     - name: Get the output
       run: |
-        echo "${{ steps.clean.outputs.notify }}"
-        echo "${{ steps.generate.outputs.notify }}"
         echo "${{ steps.deploy.outputs.notify }}"
 ```
+
+## Recommand Settings
+### Custom domain with CNAME
+If your Github Pages needs to use a `CNAME` file to **customize the domain name**, put the `CNAME` file in the source directory, only then can hexo deploy push the `CNAME` file to the deployment repository.
+
+### Make your hexo repository private
+Hide your hexo source repository from the public to protect your website.
+
+### Using submodule in your hexo repository
+You can make `themes/a-hexo-theme` as a submodule in the hexo reposotiry so that keeping the theme independent and up-to-date.
+
+In addition, each job in a workflow executes in a fresh instance of the virtual machine, which may cause wrong `archives`. All generated files are saved in the `public `folder. Making your `username.github.io` reposotiry as submodule in `public` folder in the hexo reposotiry can fix it.
+
+<details><summary>You can view an example of <em>.gitmodules</em> here.</summary>
+<p>
+
+```properties
+[submodule "themes/next"]
+	path = themes/next
+	url = https://github.com/theme-next/hexo-theme-next
+[submodule "public"]
+	path = public
+	url = https://github.com/username/username.github.io
+```
+</p>
+
+And **don't** forget to remove `public/` line in `.gitignore` file.
+</details>
+
+## License
+The scripts and documentation in this project are released under the [MIT License](LICENSE)
