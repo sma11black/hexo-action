@@ -86,24 +86,11 @@ If your Github Pages needs to use a `CNAME` file to **customize the domain name*
 Hide your hexo source repository from the public to protect your website.
 
 ### Using submodule in your hexo repository
-You can make `themes/a-hexo-theme` as a submodule in the hexo reposotiry so that keeping the theme independent and up-to-date.
+Add any hexo themes branch as gitmodules.
 
-In addition, each job in a workflow executes in a fresh instance of the virtual machine, which may cause wrong `archives`. All generated files are saved in the `public `folder. Making your `username.github.io` reposotiry as submodule in `public` folder in the hexo reposotiry can fix it.
-
-<details><summary>You can view an example of <em>.gitmodules</em> here.📝</summary>
-<p>
-
-```properties
-[submodule "themes/next"]
-	path = themes/next
-	url = https://github.com/theme-next/hexo-theme-next
-[submodule "public"]
-	path = public
-	url = https://github.com/username/username.github.io
+```sh
+git submodule add https://github.com/theme-next/hexo-theme-next.git themes/next -b 87305b1
 ```
-And **don't** forget to remove `public/` line in `.gitignore` file.
-</p>
-</details>
 
 ## License ©️
 The scripts and documentation in this project are released under the [MIT License](LICENSE)
