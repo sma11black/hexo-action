@@ -17,6 +17,7 @@ npm install hexo-cli -g
 npm install
 # npm install hexo-deployer-git --save
 
-sh -c "hexo $INPUT_CMD"
+# publish
+hexo deploy
 
-echo ::set-output name=notify::"$INPUT_CMD complate."
+echo ::set-output name=notify::"Deploy complate. HOME=$HOME"
