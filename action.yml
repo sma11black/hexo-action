@@ -1,9 +1,6 @@
 name: 'Hexo Action'
-author: 'smallblack'
-description: 'Hexo CI action for deployment.'
-branding:
-  icon: 'hexagon'  
-  color: 'blue'
+description: 'Hexo CI action for automating deployment.'
+author: 'sma11black'
 inputs:
   user_name:
     description: 'Github user name'
@@ -27,3 +24,6 @@ runs:
     - ${{ inputs.user_name }}
     - ${{ inputs.user_email }}
     - ${{ inputs.deploy_key }}
+branding:
+  icon: 'package'  
+  color: 'blue'
