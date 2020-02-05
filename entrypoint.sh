@@ -17,7 +17,8 @@ npm install hexo-cli -g
 npm install
 npm install hexo-deployer-git --save
 
-# publish
+# generate & publish
+hexo generate
 hexo deploy
 
 echo ::set-output name=notify::"Deploy complate."
