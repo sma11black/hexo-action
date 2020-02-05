@@ -8,8 +8,6 @@ LABEL maintainer="smallblack <smallblack@outlook.com>"
 RUN apk add --no-cache git
 RUN apk add --no-cache openssh
 
-RUN npm install
-
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
