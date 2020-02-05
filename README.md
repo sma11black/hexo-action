@@ -80,7 +80,7 @@ jobs:
 
 ## Recommand Settings💊
 ### Custom domain with CNAME
-If your Github Pages needs to use a `CNAME` file to **customize the domain name**, put the `CNAME` file in the source directory, only then can hexo deploy push the `CNAME` file to the deployment repository.
+If your Github Pages needs to use a `CNAME` file to **customize the domain name**, put the `CNAME` file in the `source` directory, only then can hexo deploy push the `CNAME` file to the deployment repository.
 
 ### Make your hexo repository private
 Hide your hexo source repository from the public to protect your website.
