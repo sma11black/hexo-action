@@ -34,7 +34,7 @@ For more information on these outputs, see the [API Documentation](https://devel
 - `notify`: Deploy complate notification.
 
 ### Example workflow - hexo deploy📝
-On every `push` to this repo, generate hexo sites and publish on `yourusername.github.io` repo.
+On every `push` to this repo, generate hexo sites and publish on `username.github.io` repo.
 
 ```yaml
 name: Deploy
