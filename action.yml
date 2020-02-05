@@ -1,5 +1,5 @@
 name: 'Hexo Action'
-description: 'Hexo CI action for automating deployment.'
+description: 'Hexo CI/CD action for automating deployment.'
 author: 'sma11black'
 inputs:
   user_name:
