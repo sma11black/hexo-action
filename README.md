@@ -1,15 +1,16 @@
-# GitHub Action - Hexo CI/CD
-This Github Action automating hexo deployment workflow, to allow you to leverage GitHub Actions to publish your hexo site on Github Pages.
+# GitHub Action - Hexo CI/CD :trollface:
 
 <a href="https://github.com/marketplace/actions/hexo-action"><img alt="View Action" src="https://img.shields.io/badge/action-marketplace-blue.svg?logo=github&color=orange"></a>
+<a href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-green.svg?logo=github"></a>
 
-## Usage
+This Github Action automating hexo deployment workflow, to allow you to leverage GitHub Actions to publish your hexo site on Github Pages.
+
+## Usage✒️
 ### Pre-requisites
+#### Step 1: Setup `Deploy keys` and `Secrets`
+The `with` portion of the workflow **must** be configured before the action will work. You can add these in the `with` section found in the [example workflow](#example-workflow---hexo-deploy📝) below. Any `secrets` must be referenced using the bracket syntax and stored in the GitHub repositories `Settings/Secrets` menu. You can learn more about setting environment variables with GitHub actions [here](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstepsenv).
 
-#### Step 1: Setup `Deploy key` and `Secret`
-The `with` portion of the workflow **must** be configured before the action will work. You can add these in the `with` section found in the [example workflow](#example-workflow---hexo-deploy) below. Any `secrets` must be referenced using the bracket syntax and stored in the GitHub repositories `Settings/Secrets` menu. You can learn more about setting environment variables with GitHub actions [here](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstepsenv).
-
-**How to add your ssh key pair?**
+**How to add your ssh key pair?🔑**
 1. Run the following terminal command, replacing the email with one connected to your GitHub account.
 ```sh
 ssh-keygen -t rsa -C "username@example.com"
@@ -18,7 +19,7 @@ ssh-keygen -t rsa -C "username@example.com"
 3. In *hexo source code* repo: Add the contents of the private key to the `Settings > Secrets` menu as DEPLOY_KEY.
 
 #### Step 2: Configure github workflows
-Create a workflow `.yml` file in your `.github/workflows` directory. An [example workflow](#example-workflow---hexo-deploy) is available below. For more information, reference the  GitHub Help Documentation for [Creating a workflow file](https://help.github.com/en/articles/configuring-a-workflow#creating-a-workflow-file).
+Create a workflow `.yml` file in your `.github/workflows` directory. An [example workflow](#example-workflow---hexo-deploy📝) is available below. For more information, reference the  GitHub Help Documentation for [Creating a workflow file](https://help.github.com/en/articles/configuring-a-workflow#creating-a-workflow-file).
 
 ### Inputs
 For more information on these inputs, see the [API Documentation](https://developer.github.com/v3/repos/releases/#input)
@@ -32,7 +33,7 @@ For more information on these outputs, see the [API Documentation](https://devel
 
 - `notify`: Deploy complate notification.
 
-### Example workflow - hexo deploy
+### Example workflow - hexo deploy📝
 On every `push` to this repo, generate hexo sites and publish on `yourusername.github.io` repo.
 
 ```yaml
@@ -77,7 +78,7 @@ jobs:
         echo "${{ steps.deploy.outputs.notify }}"
 ```
 
-## Recommand Settings
+## Recommand Settings💊
 ### Custom domain with CNAME
 If your Github Pages needs to use a `CNAME` file to **customize the domain name**, put the `CNAME` file in the source directory, only then can hexo deploy push the `CNAME` file to the deployment repository.
 
@@ -89,7 +90,7 @@ You can make `themes/a-hexo-theme` as a submodule in the hexo reposotiry so that
 
 In addition, each job in a workflow executes in a fresh instance of the virtual machine, which may cause wrong `archives`. All generated files are saved in the `public `folder. Making your `username.github.io` reposotiry as submodule in `public` folder in the hexo reposotiry can fix it.
 
-<details><summary>You can view an example of <em>.gitmodules</em> here.</summary>
+<details><summary>You can view an example of <em>.gitmodules</em> here.📝</summary>
 <p>
 
 ```properties
@@ -100,10 +101,9 @@ In addition, each job in a workflow executes in a fresh instance of the virtual 
 	path = public
 	url = https://github.com/username/username.github.io
 ```
-</p>
-
 And **don't** forget to remove `public/` line in `.gitignore` file.
+</p>
 </details>
 
-## License
+## License ©️
 The scripts and documentation in this project are released under the [MIT License](LICENSE)
