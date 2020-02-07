@@ -12,12 +12,7 @@ ssh-keyscan -t rsa github.com >> /root/.ssh/known_hosts
 git config --global user.name "$INPUT_USER_NAME"
 git config --global user.email "$INPUT_USER_EMAIL"
 
-# install hexo env
-npm install hexo-cli -g
-npm install hexo-deployer-git --save
-
-# generate & publish
-hexo generate
-hexo deploy
+# deployment
+hexo g -d
 
 echo ::set-output name=notify::"Deploy complate."
