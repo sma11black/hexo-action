@@ -1,16 +1,16 @@
-# GitHub Action - Hexo CI/CD :trollface:
+# GitHub Action - Hexo CI/CD 🌱
 
 <a href="https://github.com/marketplace/actions/hexo-action"><img alt="View Action" src="https://img.shields.io/badge/action-marketplace-blue.svg?logo=github&color=orange"></a>
 <a href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-green.svg?logo=github"></a>
 
 This Github Action automating hexo deployment workflow, to allow you to leverage GitHub Actions to publish your hexo site on Github Pages.
 
-## Usage✒️
-### Pre-requisites
+## 🌰Usage
+### 🍉Pre-requisites
 #### Step 1: Setup `Deploy keys` and `Secrets`
-The `with` portion of the workflow **must** be configured before the action will work. You can add these in the `with` section found in the [example workflow](#example-workflow---hexo-deploy📝) below. Any `secrets` must be referenced using the bracket syntax and stored in the GitHub repositories `Settings/Secrets` menu. You can learn more about setting environment variables with GitHub actions [here](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstepsenv).
+The `with` portion of the workflow **must** be configured before the action will work. You can add these in the `with` section found in the [example workflow](#🍌example-workflow---hexo-deploy) below. Any `secrets` must be referenced using the bracket syntax and stored in the GitHub repositories `Settings/Secrets` menu. You can learn more about setting environment variables with GitHub actions [here](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstepsenv).
 
-**How to add your ssh key pair?🔑**
+**🥕How to add your ssh key pair?**
 1. Run the following terminal command, replacing the email with one connected to your GitHub account.
 ```sh
 ssh-keygen -t rsa -C "username@example.com"
@@ -19,21 +19,21 @@ ssh-keygen -t rsa -C "username@example.com"
 3. In *hexo source code* repo: Add the contents of the private key to the `Settings > Secrets` menu as DEPLOY_KEY.
 
 #### Step 2: Configure github workflows
-Create a workflow `.yml` file in your `.github/workflows` directory. An [example workflow](#example-workflow---hexo-deploy📝) is available below. For more information, reference the  GitHub Help Documentation for [Creating a workflow file](https://help.github.com/en/articles/configuring-a-workflow#creating-a-workflow-file).
+Create a workflow `.yml` file in your `.github/workflows` directory. An [example workflow](#🍌example-workflow---hexo-deploy) is available below. For more information, reference the  GitHub Help Documentation for [Creating a workflow file](https://help.github.com/en/articles/configuring-a-workflow#creating-a-workflow-file).
 
-### Inputs
+### 🍆Inputs
 For more information on these inputs, see the [API Documentation](https://developer.github.com/v3/repos/releases/#input)
 
 - `user_name`: **Required** The user name of your github account for deploying.
 - `user_email`: **Required** The user email of your github account for deploying.
 - `deploy_key`: **Required** The deploy key to access your GitHub Pages repository.
 
-### Outputs
+### 🥒Outputs
 For more information on these outputs, see the [API Documentation](https://developer.github.com/v3/repos/releases/#response-4) for an example of what these outputs look like
 
 - `notify`: Deploy complate notification.
 
-### Example workflow - hexo deploy📝
+### 🍌Example workflow - hexo deploy
 On every `push` to this repo, generate hexo sites and publish on `username.github.io` repo.
 
 ```yaml
@@ -78,19 +78,19 @@ jobs:
         echo "${{ steps.deploy.outputs.notify }}"
 ```
 
-## Recommand Settings💊
-### Custom domain with CNAME
+## 🐔Recommand Settings
+### 🐣Custom domain with CNAME
 If your Github Pages needs to use a `CNAME` file to **customize the domain name**, put the `CNAME` file in the `source` directory, only then can hexo deploy push the `CNAME` file to the deployment repository.
 
-### Make your hexo repository private
+### 🐤Make your hexo repository private
 Hide your hexo source repository from the public to protect your website.
 
-### Using submodule in your hexo repository
+### 🐥Using submodule in your hexo repository
 Add any hexo themes branch as gitmodules.
 
 ```sh
 git submodule add https://github.com/theme-next/hexo-theme-next.git themes/next -b 87305b1
 ```
 
-## License ©️
+## 🕊License
 The scripts and documentation in this project are released under the [MIT License](LICENSE)
