@@ -78,7 +78,7 @@ jobs:
         echo "${{ steps.deploy.outputs.notify }}"
 ```
 
-## 🐔Recommand Settings
+## 🐔Recommand Hexo Repository Settings
 ### 🥚Custom domain with CNAME
 If your Github Pages needs to use a `CNAME` file to **customize the domain name**, put the `CNAME` file in the `source` directory, only then can hexo deploy push the `CNAME` file to the deployment repository.
 
@@ -89,7 +89,26 @@ Hide your hexo source repository from the public to protect your website.
 Add any hexo themes branch as gitmodules.
 
 ```sh
-git submodule add https://github.com/theme-next/hexo-theme-next.git themes/next -b 87305b1
+# Add submodule
+$ git submodule add https://github.com/theme-next/hexo-theme-next themes/next
+
+# Get tags list
+$ cd themes/next
+$ git tag -l
+…
+v6.0.0
+v6.0.1
+v6.0.2
+...
+
+# Switch on v6.0.1 tagged release version
+$ git checkout tags/v6.0.1
+Note: checking out 'tags/v6.0.1'.
+…
+HEAD is now at da9cdd2... Release v6.0.1
+
+# If you want to switch on latest release version without defining tag (optional)
+$ git checkout $(git describe --tags $(git rev-list --tags --max-count=1))
 ```
 
 ### 🐥Use `Hexo-Way` to store theme configuration options in site config file (hexo/_config.yml)
