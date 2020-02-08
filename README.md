@@ -13,7 +13,7 @@ The `with` portion of the workflow **must** be configured before the action will
 **🥕How to add your ssh key pair?**
 1. Run the following terminal command, replacing the email with one connected to your GitHub account.
 ```sh
-ssh-keygen -t rsa -C "username@example.com"
+$ ssh-keygen -t rsa -C "username@example.com"
 ```
 2. In *Github Pages* repo: Add the contents of the public key within your repositories deploy keys menu. You can find this option by going to `Settings > Deploy Keys`, you can name the public key whatever you want, but you **do** need to give it write access.
 3. In *hexo source code* repo: Add the contents of the private key to the `Settings > Secrets` menu as DEPLOY_KEY.
