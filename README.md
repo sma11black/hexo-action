@@ -113,7 +113,7 @@ $ git checkout $(git describe --tags $(git rev-list --tags --max-count=1))
 
 ### 🐥Use `Hexo-Way` to store theme configuration options in site config file (hexo/_config.yml)
 Copy needed theme options from theme config file into site config file, then
-1. Move all this settings to the right with two spaces (in Visual Studio Code: select all strings, CTRL + ]).
+1. Move all this settings to the right with two spaces (in Visual Studio Code: select all strings, `CTRL + ]`).
 2. Add theme_config: parameter above all this settings.
 
 You can learn more about overriding theme config [here](https://hexo.io/docs/configuration.html#Overriding-Theme-Config).
