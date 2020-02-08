@@ -5,8 +5,8 @@
 
 This Github Action automating hexo deployment workflow, to allow you to leverage GitHub Actions to publish your hexo site on Github Pages.
 
-## 🌰Usage
-### 🍉Pre-requisites
+## 🍑Usage
+### 🍄Pre-requisites
 #### Step 1: Setup `Deploy keys` and `Secrets`
 The `with` portion of the workflow **must** be configured before the action will work. You can add these in the `with` section found in the [example workflow](#🍌example-workflow---hexo-deploy) below. Any `secrets` must be referenced using the bracket syntax and stored in the GitHub repositories `Settings/Secrets` menu. You can learn more about setting environment variables with GitHub actions [here](https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstepsenv).
 
