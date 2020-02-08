@@ -79,18 +79,25 @@ jobs:
 ```
 
 ## 🐔Recommand Settings
-### 🐣Custom domain with CNAME
+### 🥚Custom domain with CNAME
 If your Github Pages needs to use a `CNAME` file to **customize the domain name**, put the `CNAME` file in the `source` directory, only then can hexo deploy push the `CNAME` file to the deployment repository.
 
-### 🐤Make your hexo repository private
+### 🐣Make your hexo repository private
 Hide your hexo source repository from the public to protect your website.
 
-### 🐥Using submodule in your hexo repository
+### 🐤Use submodule in your hexo repository
 Add any hexo themes branch as gitmodules.
 
 ```sh
 git submodule add https://github.com/theme-next/hexo-theme-next.git themes/next -b 87305b1
 ```
+
+### 🐥Use `Hexo-Way` to store theme configuration options in site config file (hexo/_config.yml)
+Copy needed theme options from theme config file into site config file, then
+1. Move all this settings to the right with two spaces (in Visual Studio Code: select all strings, CTRL + ]).
+2. Add theme_config: parameter above all this settings.
+
+You can learn more about overriding theme config [here](https://hexo.io/docs/configuration.html#Overriding-Theme-Config).
 
 ## 🕊License
 The scripts and documentation in this project are released under the [MIT License](LICENSE)
