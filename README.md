@@ -78,6 +78,10 @@ jobs:
         echo "${{ steps.deploy.outputs.notify }}"
 ```
 
+### 🌽How to install additional third party node modules?
+1. Add them as dependencies in the `package.json` file under your site's working directory.
+2. Regenerate the `package-lock.json` file to **cache** them in your `Install Dependencies` step.
+
 ## 🐔Recommand Hexo Repository Settings
 ### 🥚Custom domain with CNAME
 If your Github Pages needs to use a `CNAME` file to **customize the domain name**, put the `CNAME` file in the `source` directory, only then can hexo deploy push the `CNAME` file to the deployment repository.
