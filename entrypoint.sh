@@ -19,6 +19,6 @@ npm install hexo-deployer-git --save
 git clone https://github.com/$GITHUB_ACTOR/$GITHUB_ACTOR.github.io.git .deploy_git
 
 # deployment
-hexo g -d -m "$GITHUB_ACTION"
+hexo g -d -m "$GITHUB_EVENT_NAME"
 
 echo ::set-output name=notify::"Deploy complate."
