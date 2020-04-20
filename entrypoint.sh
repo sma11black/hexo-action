@@ -19,6 +19,10 @@ npm install hexo-deployer-git --save
 git clone https://github.com/$GITHUB_ACTOR/$GITHUB_ACTOR.github.io.git .deploy_git
 
 # deployment
-hexo g -d -m "$INPUT_COMMIT_MSG"
+if [ $INPUT_COMMIT_MSG = '' ]; then
+    hexo g -d
+else
+    hexo g -d -m "$INPUT_COMMIT_MSG"
+fi
 
 echo ::set-output name=notify::"Deploy complate."
