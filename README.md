@@ -27,11 +27,13 @@ For more information on these inputs, see the [API Documentation](https://develo
 | Key | Required | Description | Default |
 | --- | --- | --- | --- |
 | `user_name` | NO | The user name of your github account for deploying. | `github-actions[bot]` |
-| `user_email` | NO | The user email of your github account for deploying. | `41898282+github-actions[bot]@users.noreply.github.com` [^1] |
+| `user_email` | NO | The user email of your github account for deploying. | `41898282+github-actions[bot]@users.noreply.github.com`[<sup>1</sup>](#refer-anchor-1) |
 | `deploy_key` | **YES** | The **deploy key** to access your **GitHub Pages repository**. | `null` |
 | `commit_msg` | NO | Git commit messages to your GitHub Pages repository. | `null` |
 
-[^1] 41898282 is the user ID for `github-actions[bot]`. Ref [Github API](https://api.github.com/users/github-actions[bot]/events/public).
+<div id="refer-anchor-1"></div>
+
+- [1] 41898282 is the user ID for `github-actions[bot]`. Ref [Github API](https://api.github.com/users/github-actions[bot]/events/public).
 
 **Tips**:
 - `user_name` and `user_email`: Github Actions bot is just a bot account to perform these operations so that users would know that they were triggered by automation. There is an known issue if you use this bot account. In your GitHub Pages repository, if you want to filter commits by author, it will return a wrong result: `No commits found for "github-actions[bot]"`. You can avoid such error by using your github account instead of default bot account.
