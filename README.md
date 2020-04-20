@@ -24,9 +24,18 @@ Create a workflow `.yml` file in your `.github/workflows` directory. An [example
 ### 🍆Inputs
 For more information on these inputs, see the [API Documentation](https://developer.github.com/v3/repos/releases/#input)
 
-- `user_name`: **Required** The user name of your github account for deploying.
-- `user_email`: **Required** The user email of your github account for deploying.
-- `deploy_key`: **Required** The deploy key to access your GitHub Pages repository.
+| Key | Required | Description | Default |
+| --- | --- | --- | --- |
+| `user_name` | NO | The user name of your github account for deploying. | `github-actions[bot]` |
+| `user_email` | NO | The user email of your github account for deploying. | `41898282+github-actions[bot]@users.noreply.github.com` [^1] |
+| `deploy_key` | **YES** | The **deploy key** to access your **GitHub Pages repository**. | `null` |
+| `commit_msg` | NO | Git commit messages to your GitHub Pages repository. | `null` |
+
+[^1] 41898282 is the user ID for `github-actions[bot]`. Ref [Github API](https://api.github.com/users/github-actions[bot]/events/public).
+
+**Tips**:
+- `user_name` and `user_email`: Github Actions bot is just a bot account to perform these operations so that users would know that they were triggered by automation. There is an known issue if you use this bot account. In your GitHub Pages repository, if you want to filter commits by author, it will return a wrong result: `No commits found for "github-actions[bot]"`. You can avoid such error by using your github account instead of default bot account.
+- `commit_msg`: For [Hexo official](https://hexo.io/docs/one-command-deployment.html#Git), the commit message is default to `Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }}`. But for users who actually need to keep commit history, they may not need such one. So the recommended setting is `${{ github.event.head_commit.message }}` so that you can transfer commit messages to the GitHub Pages repository directly. If you prefer the default commit message, it is unnecessary to set in your workflow file.
 
 ### 🥒Outputs
 For more information on these outputs, see the [API Documentation](https://developer.github.com/v3/repos/releases/#response-4) for an example of what these outputs look like
@@ -67,11 +76,12 @@ jobs:
     # Deploy hexo blog website.
     - name: Deploy
       id: deploy
-      uses: sma11black/hexo-action@v1.0.0
+      uses: sma11black/hexo-action@v1.0.1
       with:
         deploy_key: ${{ secrets.DEPLOY_KEY }}
-        user_name: your github username
-        user_email: your github useremail
+        user_name: your github username  # (or delelte this input setting to use bot account)
+        user_email: your github useremail  # (or delelte this input setting to use bot account)
+        commit_msg: ${{ github.event.head_commit.message }}  # (or delelte this input setting to use hexo default settings)
     # Use the output from the `deploy` step(use for test action)
     - name: Get the output
       run: |
