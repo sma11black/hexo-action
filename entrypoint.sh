@@ -16,7 +16,7 @@ git config --global user.email "$INPUT_USER_EMAIL"
 npm install hexo-cli -g
 npm install hexo-deployer-git --save
 
-git clone https://github.com/$GITHUB_ACTOR/$GITHUB_ACTOR.github.io.git .deploy_git
+git clone https://github.com/$INPUT_PAGE_ACCOUNT/$INPUT_PAGE_ACCOUNT.github.io.git .deploy_git
 
 # deployment
 if [ "$INPUT_COMMIT_MSG" == "" ]
