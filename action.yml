@@ -18,10 +18,6 @@ inputs:
     description: 'Git commit messages to your GitHub Pages repository.'
     required: false
     default: ''
-  page_account:
-    description: 'The owner user or organization account of Github Pages repository.'
-    required: false
-    default: ${{ github.actor }}
 outputs:
   notify: # id of output
     description: 'The notification of deployment result'
@@ -32,7 +28,7 @@ runs:
     - ${{ inputs.user_name }}
     - ${{ inputs.user_email }}
     - ${{ inputs.deploy_key }}
-    - ${{ inputs.page_account }}
+    - ${{ inputs.commit_msg }}
 branding:
   icon: 'package'  
   color: 'blue'

@@ -20,8 +20,6 @@ npm install hexo-deployer-git --save
 repo=$(grep 'repo:' _config.yml)
 repo=${repo##*/}
 page_account=${repo%.github.io*}
-ls
-echo $page_account
 git clone https://github.com/$page_account/$page_account.github.io.git .deploy_git
 
 # deployment
