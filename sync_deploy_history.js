@@ -41,3 +41,5 @@ function sync_deploy_history() {
     clone(repos[0]);
   });
 }
+
+function sync_deploy_history();
