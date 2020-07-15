@@ -6,26 +6,23 @@ const spawn = require('hexo-util/lib/spawn');
 const Hexo = require('hexo');
 
 async function sync_deploy_history() {
+  // Hexo context
+  const hexo = new Hexo(process.cwd(), { silent: true });
+  await hexo.init();
+  // Hexo logger
+  const logger = hexo.log;
+  logger.info('\nSync start...');
+
+  const deployDir = pathFn.join(hexo.base_dir, '.deploy_git');
+
   // For git cmd
   function git(...args) {
     return spawn('git', args, {
       cwd: deployDir,
-      verbose: verbose,
+      verbose: true,
       stdio: 'inherit'
     });
   }
-
-  // Clone published hexo site
-  function clone(repo) {
-    const deployDir = pathFn.join(hexo.base_dir, '.deploy_git');
-    return git('clone', '--branch', repo.branch, repo.url, deployDir);
-  }
-
-  // Hexo context
-  const hexo = new Hexo(process.cwd(), { silent: true });
-  await hexo.init();
-  const logger = hexo.log;
-  logger.info('\nSync start...');
 
   // Get multi deployer configurations as array
   let deployConfigs = hexo.config.deploy;
@@ -33,7 +30,7 @@ async function sync_deploy_history() {
     deployConfigs = [deployConfigs];
   }
 
-  // Parse repo from configs and sync repo
+  // Parse repo from configs and pull repo
   deployConfigs.forEach(deployConfig => {
     if (deployConfig.type !== 'git') {
       logger.info(`Skip deployer: ${deployConfig.type}.`);
@@ -44,8 +41,8 @@ async function sync_deploy_history() {
       logger.error(`Given too much repos: ${repos.length}.`);
       throw new TypeError('Only single repo is supported!');
     }
-    logger.info(`Spacify a single repo: ${repos[0]}.`);
-    result = clone(repos[0]);
+    logger.info(`Located a single repo: ${repos[0]}.`);
+    result = git('clone', '--branch', repos[0].branch, repos[0].url, deployDir);
     logger.info(result);
   });
 
