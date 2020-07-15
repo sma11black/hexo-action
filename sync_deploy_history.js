@@ -25,7 +25,7 @@ function sync_deploy_history() {
   const hexo = new Hexo(process.cwd(), { silent: true });
   hexo.init();
   // Get multi deployer configurations as array
-  let deplyConfigs = hexo.config.deploy;
+  let deployConfigs = hexo.config.deploy;
   if (!Array.isArray(deployConfigs)) {
     deployConfigs = [deployConfigs];
   }
