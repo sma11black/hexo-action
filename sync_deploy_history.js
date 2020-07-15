@@ -41,7 +41,7 @@ async function sync_deploy_history() {
       logger.error(`Given too much repos: ${repos.length}.`);
       throw new TypeError('Only single repo is supported!');
     }
-    logger.info(`Located a single repo: ${repos[0]}.`);
+    console.log(`Located a single repo: ${repos[0]}.`);
     result = git('clone', '--branch', repos[0].branch, repos[0].url, deployDir);
     logger.info(result);
   });
