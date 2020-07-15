@@ -32,7 +32,7 @@ async function sync_deploy_history() {
   }
 
   // Parse repo from configs and pull repo
-  deployConfigs.forEach(deployConfig => {
+  deployConfigs.forEach(async deployConfig => {
     if (deployConfig.type !== 'git') {
       console.log(`Skip deployer: ${deployConfig.type}.`);
       return;
