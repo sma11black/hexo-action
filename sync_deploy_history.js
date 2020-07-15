@@ -24,25 +24,31 @@ function sync_deploy_history() {
   // Hexo context
   const hexo = new Hexo(process.cwd(), { silent: true });
   hexo.init();
+  const logger = hexo.log;
+  logger.info('\nSync start...');
+
   // Get multi deployer configurations as array
   let deployConfigs = hexo.config.deploy;
   if (!Array.isArray(deployConfigs)) {
     deployConfigs = [deployConfigs];
   }
 
+  // Parse repo from configs and sync repo
   deployConfigs.forEach(deployConfig => {
     if (deployConfig.type !== 'git') {
+      logger.info(`Skip deployer: ${deployConfig.type}.`);
       return;
     }
     const repos = parseConfig(deployConfig);
     if (repos.length > 1) {
+      logger.error(`Given too much repos: ${repos.length}.`);
       throw new TypeError('Only single repo is supported!');
     }
     result = clone(repos[0]);
-    console.log(result);
+    logger.info(result);
   });
+
+  logger.info('Sync done\n');
 }
 
-console.log('\nStart sync...');
 sync_deploy_history();
-console.log('Sync done\n');
