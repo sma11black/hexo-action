@@ -6,6 +6,7 @@ LABEL homepage="https://sma11black.github.io"
 LABEL maintainer="sma11black <smallblack@outlook.com>"
 
 COPY entrypoint.sh /entrypoint.sh
+COPY sync_deploy_history.js /sync_deploy_history.js
 
 RUN apk add --no-cache git openssh > /dev/null ; \
     chmod +x /entrypoint.sh
