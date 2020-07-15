@@ -43,7 +43,7 @@ async function sync_deploy_history() {
       throw new TypeError('Only single repo is supported!');
     }
     console.log(`Located a single repo: ${repos[0].url},${repos[0].branch}.`);
-    result = await git('clone', '--branch', repos[0].branch, repos[0].url, deployDir);
+    const result = await git('clone', '--branch', repos[0].branch, repos[0].url, deployDir);
     console.log(result);
   });
 
