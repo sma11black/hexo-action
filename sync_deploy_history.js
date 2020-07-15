@@ -1,4 +1,6 @@
 // Thanks to @Aetf
+'use strict';
+
 const pathFn = require('path');
 const fs = require('fs');
 const parseConfig = require('hexo-deployer-git/lib/parse_config');
@@ -6,8 +8,6 @@ const spawn = require('hexo-util/lib/spawn');
 const Hexo = require('hexo');
 
 async function sync_deploy_history() {
-  // Get logger
-  const log = this.log;
   console.log('\nSync start...');
 
   // Hexo context
