@@ -38,8 +38,11 @@ function sync_deploy_history() {
     if (repos.length > 1) {
       throw new TypeError('Only single repo is supported!');
     }
-    clone(repos[0]);
+    return clone(repos[0]);
   });
 }
 
-sync_deploy_history();
+console.log('Start sync...');
+result = sync_deploy_history();
+console.log(result);
+console.log('Sync done');
