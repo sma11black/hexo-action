@@ -17,10 +17,7 @@ npm install hexo-cli -g
 npm install hexo-deployer-git --save
 
 # pull original publish repo
-repo=$(grep 'repo:' _config.yml)
-repo=${repo##*/}
-page_account=${repo%.github.io*}
-git clone https://github.com/$page_account/$page_account.github.io.git .deploy_git
+node /sync_deploy_history.js
 
 # deployment
 if [ "$INPUT_COMMIT_MSG" == "" ]
