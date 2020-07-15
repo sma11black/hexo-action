@@ -17,7 +17,7 @@ npm install hexo-cli -g
 npm install hexo-deployer-git --save
 
 # pull original publish repo
-node /sync_deploy_history.js
+NODE_PATH=$NODE_PATH:$(pwd)/node_modules node /sync_deploy_history.js
 
 # deployment
 if [ "$INPUT_COMMIT_MSG" == "" ]
