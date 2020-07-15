@@ -42,4 +42,4 @@ function sync_deploy_history() {
   });
 }
 
-function sync_deploy_history();
+sync_deploy_history();
