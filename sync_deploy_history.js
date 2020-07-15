@@ -19,7 +19,6 @@ async function sync_deploy_history() {
   // For git cmd
   function git(...args) {
     return spawn('git', args, {
-      cwd: deployDir,
       verbose: true,
       stdio: 'inherit'
     });
