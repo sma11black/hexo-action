@@ -8,7 +8,7 @@ const Hexo = require('hexo');
 async function sync_deploy_history() {
   // Get logger
   const log = this.log;
-  log.info('\nSync start...');
+  console.log('\nSync start...');
 
   // Hexo context
   const hexo = new Hexo(process.cwd(), { silent: true });
@@ -34,20 +34,20 @@ async function sync_deploy_history() {
   // Parse repo from configs and pull repo
   deployConfigs.forEach(deployConfig => {
     if (deployConfig.type !== 'git') {
-      log.info(`Skip deployer: ${deployConfig.type}.`);
+      console.log(`Skip deployer: ${deployConfig.type}.`);
       return;
     }
     const repos = parseConfig(deployConfig);
     if (repos.length > 1) {
-      log.error(`Given too much repos: ${repos.length}.`);
+      console.error(`Given too much repos: ${repos.length}.`);
       throw new TypeError('Only single repo is supported!');
     }
     console.log(`Located a single repo: ${repos[0].url},${repos[0].branch}.`);
     result = git('clone', '--branch', repos[0].branch, repos[0].url, deployDir);
-    log.info(result);
+    console.log(result);
   });
 
-  log.info('Sync done\n');
+  console.log('Sync done\n');
 }
 
 sync_deploy_history();
