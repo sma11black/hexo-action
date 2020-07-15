@@ -34,15 +34,15 @@ function sync_deploy_history() {
     if (deployConfig.type !== 'git') {
       return;
     }
-    const repos = parseConfig(deplyConfig);
+    const repos = parseConfig(deployConfig);
     if (repos.length > 1) {
       throw new TypeError('Only single repo is supported!');
     }
-    return clone(repos[0]);
+    result = clone(repos[0]);
+    console.log(result);
   });
 }
 
-console.log('Start sync...');
-result = sync_deploy_history();
-console.log(result);
-console.log('Sync done');
+console.log('\nStart sync...');
+sync_deploy_history();
+console.log('Sync done\n');
