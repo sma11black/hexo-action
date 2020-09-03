@@ -8,7 +8,8 @@ LABEL maintainer="sma11black <smallblack@outlook.com>"
 COPY entrypoint.sh /entrypoint.sh
 COPY sync_deploy_history.js /sync_deploy_history.js
 
-RUN apt install -y git openssh-client > /dev/null ; \
+RUN apt-get update && \
+    apt-get install -y git openssh-client > /dev/null ; \
     chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
