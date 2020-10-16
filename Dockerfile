@@ -9,7 +9,7 @@ COPY entrypoint.sh sync_deploy_history.js /
 
 RUN apk add --no-cache ca-certificates \
         git \
-        openssh ; \
+        openssh-client ; \
     chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
