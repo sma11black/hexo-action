@@ -30,3 +30,5 @@ else
     NODE_PATH=$NODE_PATH:$(pwd)/node_modules node /sync_deploy_history.js
     hexo g -d -m "$INPUT_COMMIT_MSG"
 fi
+
+echo "name=notify" >> $GITHUB_OUTPUT
